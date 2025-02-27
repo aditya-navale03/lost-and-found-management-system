@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="reportmissing.css">
+    <title>Add Found Item</title>
+</head>
+<body>
+    <main class="form-container">
+        <h1><i class="fa-solid fa-plus"></i> Add Found Item</h1>
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <label for="item-name">Item Name:</label>
+            <input type="text" id="item-name" name="item-name" required>
+
+            <label for="item-image">Upload Image:</label>
+            <input type="file" id="item-image" name="item-image" accept="image/*" required>
+
+            <label for="item-description">Description:</label>
+            <textarea id="item-description" name="item-description" rows="4" required></textarea>
+
+            <label for="item-location">Location Found:</label>
+            <input type="text" id="item-location" name="item-location" required>
+
+            <label for="date-found">Date Found:</label>
+            <input type="date" id="date-found" name="date-found" required>
+
+            <label for="claim-requirement">Claim Requirement:</label>
+            <input type="text" id="claim-requirement" name="claim-requirement" required>
+
+            <button type="submit" class="btn-submit"><i class="fa-solid fa-upload"></i> Submit</button>
+        </form>
+    </main>
+    <script src="reportmissing.js"></script>
+</body>
+</html>

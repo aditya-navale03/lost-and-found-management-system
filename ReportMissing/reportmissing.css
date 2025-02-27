@@ -1,0 +1,93 @@
+/* General Styles */
+:root {
+    --primary-color: #ff6b6b;
+    --secondary-color: #ff9f43;
+    --accent-color: #1e90ff;
+    --text-light: #f8f9fa;
+    --bg-dark: #2b2d42;
+    --hover-light: rgba(255, 255, 255, 0.2);
+    --card-bg: #ffffff;
+    --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.form-container {
+    width: 90%;
+    max-width: 500px;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: 2rem;
+    color: var(--bg-dark);
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    color: var(--bg-dark);
+    margin-top: 10px;
+    text-align: left;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.9rem;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+}
+
+.btn-submit {
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.9rem 1.8rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.btn-submit:hover {
+    transform: scale(1.08);
+    background: var(--primary-color);
+    box-shadow: var(--shadow-light);
+}

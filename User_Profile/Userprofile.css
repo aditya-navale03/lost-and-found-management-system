@@ -1,0 +1,180 @@
+/* Root Variables for Consistent Colors */
+:root {
+  --primary-color: #ff6b6b;
+  --secondary-color: #ff9f43;
+  --accent-color: #1e90ff;
+  --text-light: #f8f9fa;
+  --bg-dark: #2b2d42;
+  --hover-light: rgba(255, 255, 255, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: var(--text-light);
+}
+
+/* Main Section */
+main {
+  width: 100%;
+  max-width: 800px;
+  padding: 3rem;
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+header {
+  width: 100%;
+  text-align: center;
+  background: var(--primary-color);
+  color: var(--text-light);
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+header h1 {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header h1 i {
+  margin-right: 10px;
+}
+
+/* Profile Section */
+.profile-section {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px var(--shadow-color);
+  backdrop-filter: blur(10px);
+}
+
+/* Input Fields */
+.input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.input-container i {
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+.input-container input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.input-container input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.input-container input[readonly] {
+  cursor: not-allowed;
+  color: #ddd;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.save-button, .logout-button {
+  background: var(--secondary-color);
+  color: var(--text-light);
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+}
+
+.save-button:hover, .logout-button:hover {
+  background: var(--accent-color);
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+}
+
+.existing-profiles {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.existing-profiles h2 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+#profileSelect {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.delete-button {
+  background: #dc3545;
+  color: var(--text-light);
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+}
+
+.delete-button:hover {
+  background: #c82333;
+  transform: scale(1.05);
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="icon" type="img/x-icon" href="/assets/Images/Batstatelogo.png">
+  <link rel="stylesheet" href="/User_Profile/userProfile.css">
+  <!-- Linking External CSS -->
+  <title>User Profile | Lost and Found</title>
+</head>
+<body>
+  <main>
+    <header>
+      <h1><i class="fa-solid fa-user-shield"></i> User Profile</h1>
+    </header>
+
+    <section class="profile-section">
+      <div class="existing-profiles">
+        <h2>Existing Profiles</h2>
+        <select id="profileSelect">
+          <option value="">Select a profile</option>
+        </select>
+      </div>
+
+      <div class="input-container">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" id="username" placeholder="Username">
+        <input type="email" id="email" placeholder="Email Address">
+        <input type="text" id="fullName" placeholder="Full Name">
+        <input type="tel" id="phone" placeholder="Phone Number">
+      </div>
+
+      <div class="button-group">
+        <button id="saveProfile" class="save-button">
+          <i class="fa-solid fa-save"></i> Save Profile
+        </button>
+        <button id="deleteProfile" class="delete-button">
+          <i class="fa-solid fa-trash"></i> Delete Profile
+        </button>
+        <button id="logout" class="logout-button">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="userProfile.js"></script>
+</body>
+</html>
