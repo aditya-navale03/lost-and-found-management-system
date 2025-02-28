@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/Student_View_Lost/StudentView.css">
     <title>Student View Lost Items</title>
+    <script src="itemsData.js"></script>
+    <script src="StudentView.js"></script>
 </head>
 <body>  
     <div class="container">
@@ -25,19 +27,20 @@
         </div>
     </div>
 
-    <!-- Add the scripts -->
-    <script src="/Student_View_Lost/itemsData.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Get DOM elements
             const itemsContainer = document.getElementById('itemsContainer');
             const searchInput = document.getElementById('searchInput');
             const searchButton = document.getElementById('searchButton');
 
-            // Function to display items
+            // Get items directly from localStorage or use initialItems as fallback
+            let currentItems = JSON.parse(localStorage.getItem('lostItems')) || initialItems;
+
             function displayItems(items) {
                 itemsContainer.innerHTML = '';
                 
-                if (items.length === 0) {
+                if (!items || items.length === 0) {
                     itemsContainer.innerHTML = '<div class="no-results">No items found</div>';
                     return;
                 }
@@ -45,8 +48,17 @@
                 items.forEach(item => {
                     const itemCard = document.createElement('div');
                     itemCard.className = 'item-card';
+                    
+                    // Create image element with error handling
+                    const img = new Image();
+                    img.src = item.image;
+                    img.alt = item.name;
+                    img.onerror = function() {
+                        this.src = '/assets/default-image.jpg';
+                    };
+
                     itemCard.innerHTML = `
-                        <img src="${item.image}" alt="${item.name}">
+                        <img src="${item.image}" alt="${item.name}" onerror="this.src='/assets/default-image.jpg'">
                         <h3>${item.name}</h3>
                         <p><strong>Location Found:</strong> ${item.location}</p>
                         <p><strong>Date Found:</strong> ${item.dateFound}</p>
@@ -57,16 +69,15 @@
                 });
             }
 
-            // Function to perform search
             function performSearch() {
                 const searchTerm = searchInput.value.toLowerCase().trim();
                 
                 if (searchTerm === '') {
-                    displayItems(lostItems);
+                    displayItems(currentItems);
                     return;
                 }
 
-                const filteredItems = lostItems.filter(item => 
+                const filteredItems = currentItems.filter(item => 
                     item.name.toLowerCase().includes(searchTerm) ||
                     item.location.toLowerCase().includes(searchTerm) ||
                     item.description.toLowerCase().includes(searchTerm)
@@ -83,8 +94,8 @@
                 }
             });
 
-            // Initial display of all items
-            displayItems(lostItems);
+            // Initial display
+            displayItems(currentItems);
         });
     </script>
     <script src="/assets/js/Logout.js"></script>

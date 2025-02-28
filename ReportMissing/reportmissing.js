@@ -12,30 +12,43 @@ function handleFormSubmit(event) {
     // Convert the uploaded image to a data URL
     const reader = new FileReader();
     reader.onload = function(e) {
+        // Get existing items to determine next ID
+        let existingItems = JSON.parse(localStorage.getItem('lostItems')) || initialItems;
+        const maxId = Math.max(...existingItems.map(item => item.id || 0), 0);
+
         // Create item data object
         const itemData = {
+            id: maxId + 1,
             name: itemName,
             image: e.target.result,
             location: location,
-            dateFound: dateFound,
+            dateFound: new Date(dateFound).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            }),
             description: description,
             claimRequirement: claimRequirement
         };
 
-        // Store the item in localStorage
-        let existingItems = JSON.parse(localStorage.getItem('lostItems') || '[]');
-        existingItems.unshift(itemData); // Add new item to the beginning
-        localStorage.setItem('lostItems', JSON.stringify(existingItems));
+        // Log the formatted item data for easy copying to itemsData.js
+        console.log('New item data to add to itemsData.js:');
+        console.log(JSON.stringify({
+            id: itemData.id,
+            name: itemData.name,
+            location: itemData.location,
+            dateFound: itemData.dateFound,
+            description: itemData.description,
+            claimRequirement: itemData.claimRequirement,
+            image: "/assets/your-image-name.jpg"  // You'll need to save the image file separately
+        }, null, 4));
 
-        // Show success message
-        const successMessage = `Item "${itemName}" has been successfully added!\n\nYou can now view it in the Lost Items page.`;
-        alert(successMessage);
+        // Use the addLostItem function from itemsData.js
+        addLostItem(itemData);
 
-        // Reset the form
-        event.target.reset();
-
-        // Redirect to the student view page
-        window.location.href = '/Student_View_Lost/StudentView.html';
+        // Show success message and redirect
+        alert(`Item "${itemName}" has been successfully added!\n\nYou can now view it in the Lost Items page.\n\nCheck console for item data to add to itemsData.js`);
+        window.location.href = '../Student_View_Lost/StudentView.html';
     };
     
     reader.readAsDataURL(itemImage);

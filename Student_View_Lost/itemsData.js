@@ -1,4 +1,8 @@
-const lostItems = [
+// Clear existing items in localStorage
+localStorage.removeItem('lostItems');
+
+// Initial hardcoded items
+const initialItems = [
     {
         id: 1,
         name: "Black Leather Wallet",
@@ -107,4 +111,93 @@ const lostItems = [
         claimRequirement: "Describe the stickers on the bottle.",
         image: "/assets/bottle.jpg"
     }
-]; 
+];
+
+// Force initialize localStorage with hardcoded items
+localStorage.setItem('lostItems', JSON.stringify(initialItems));
+
+// Function to add a new item
+function addLostItem(item) {
+    let items = JSON.parse(localStorage.getItem('lostItems')) || initialItems;
+    
+    // Generate new ID if not provided
+    if (!item.id) {
+        const maxId = Math.max(...items.map(item => item.id || 0), 0);
+        item.id = maxId + 1;
+    }
+    
+    // Add the new item to the beginning of the array
+    items.unshift(item);
+    
+    // Save to localStorage
+    localStorage.setItem('lostItems', JSON.stringify(items));
+    
+    // Return the updated items array
+    return items;
+}
+
+// Function to get all items
+function getAllLostItems() {
+    return JSON.parse(localStorage.getItem('lostItems')) || initialItems;
+}
+
+// Export functions if needed
+window.addLostItem = addLostItem;
+window.getAllLostItems = getAllLostItems;
+
+// Ensure items are initialized when the file loads
+document.addEventListener('DOMContentLoaded', function() {
+    if (!localStorage.getItem('lostItems')) {
+        console.log('Initializing items in localStorage');
+        localStorage.setItem('lostItems', JSON.stringify(initialItems));
+    }
+
+    // Get the container where items will be displayed
+    const itemsContainer = document.querySelector('.items-container');
+    
+    // Get all items from localStorage
+    const items = getAllLostItems();
+    
+    // Display items
+    function displayItems(items) {
+        itemsContainer.innerHTML = ''; // Clear existing items
+        
+        if (items.length === 0) {
+            itemsContainer.innerHTML = '<div class="no-results">No items found</div>';
+            return;
+        }
+        
+        items.forEach(item => {
+            const itemCard = `
+                <div class="item-card">
+                    <img src="${item.image}" alt="${item.name}">
+                    <h3>${item.name}</h3>
+                    <p><strong>Location:</strong> ${item.location}</p>
+                    <p><strong>Date Found:</strong> ${item.dateFound}</p>
+                    <p><strong>Description:</strong> ${item.description}</p>
+                    <p><strong>Claim Requirement:</strong> ${item.claimRequirement}</p>
+                </div>
+            `;
+            itemsContainer.innerHTML += itemCard;
+        });
+    }
+    
+    // Initial display of items
+    displayItems(items);
+    
+    // Handle search functionality if it exists
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    
+    if (searchButton && searchInput) {
+        searchButton.addEventListener('click', function() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredItems = items.filter(item => 
+                item.name.toLowerCase().includes(searchTerm) ||
+                item.description.toLowerCase().includes(searchTerm) ||
+                item.location.toLowerCase().includes(searchTerm)
+            );
+            displayItems(filteredItems);
+        });
+    }
+}); 
