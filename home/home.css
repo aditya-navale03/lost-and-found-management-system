@@ -169,6 +169,21 @@ h1 {
   animation: bounce 2s infinite;
 }
 
+.claim-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.claim-button:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
 
 
 

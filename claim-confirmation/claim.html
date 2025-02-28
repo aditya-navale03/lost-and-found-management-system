@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found Claim Confirmation</title>
+    <link rel="stylesheet" type="text/css" href="/claim-confirmation/claim.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Lost & Found Claim Confirmation</h2>
+        <form>
+            <label>Full Name:</label>
+            <input type="text" placeholder="Enter your full name" required>
+
+            <label>Contact Information:</label>
+            <input type="text" placeholder="Phone or Email" required>
+
+            <label>Proof of Identity (ID Number):</label>
+            <input type="text" placeholder="Enter your ID number" required>
+
+            <label>Item Name:</label>
+            <input type="text" placeholder="Enter lost item name" required>
+
+            <label>Item Description:</label>
+            <textarea placeholder="Describe the item with unique details" required></textarea>
+
+            <label>Date & Location Lost:</label>
+            <input type="text" placeholder="Enter date and location" required>
+
+            <label>Proof of Ownership (Receipt, Serial No., etc.):</label>
+            <input type="text" placeholder="Describe proof of ownership" required>
+
+            <label>Claim Status:</label>
+            <select>
+                <option>Pending</option>
+                <option>Approved</option>
+                <option>Rejected</option>
+            </select>
+
+            <label>Handover Confirmation:</label>
+            <input type="text" placeholder="Staff Name & Signature">
+            <input type="text" placeholder="Claimant Signature">
+            <input type="datetime-local">
+            
+            <label>Terms & Conditions:</label>
+            <textarea readonly>By submitting, you agree that false claims may be subject to legal actions.</textarea>
+
+            <button type="submit">Submit Claim</button>
+        </form>
+    </div>
+</body>
+</html>

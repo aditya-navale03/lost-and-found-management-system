@@ -15,6 +15,7 @@ app.use('/assets', express.static(path.join(__dirname, "assets")));
 app.use('/home', express.static(path.join(__dirname, "home")));
 app.use('/home-page', express.static(path.join(__dirname, "home-page")));
 app.use('/ReportMissing', express.static(path.join(__dirname, "ReportMissing")));
+app.use('/claim-confirmation', express.static(path.join(__dirname, 'claim-confirmation')));
 app.use(express.static(path.join(__dirname)));
 
 // Main routes - serve login page directly at root
@@ -45,7 +46,7 @@ app.get("/ReportMissing", (req, res) => {
 });
 
 app.get("/ClaimConfirmation", (req, res) => {
-  res.sendFile(path.join(__dirname, "ClaimConfirmation", "ClaimConfirmation.html"));
+  res.sendFile(path.join(__dirname, "claim-confirmation", "claim.html"));
 });
 
 // Auth routes
