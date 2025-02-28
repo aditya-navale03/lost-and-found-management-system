@@ -1,13 +1,20 @@
 async function handleSignup(event) {
     event.preventDefault();
     
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-    // Simple validation
+    // Enhanced validation
     if (!name || !email || !password) {
         alert('Please fill in all fields');
+        return false;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address');
         return false;
     }
 
@@ -29,6 +36,7 @@ async function handleSignup(event) {
         alert('Signup successful! Please login.');
         window.location.href = '/login';
     } catch (error) {
+        console.error('Signup error:', error);
         alert(error.message);
     }
     
